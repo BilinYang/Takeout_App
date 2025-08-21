@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bilin.mapper.DishFlavorMapper">
+    <insert id="insertBatch">
+        insert into dish_flavor values 
+            <foreach collection="dishFlavorList" item="flavor" separator=",">
+                (null, #{flavor.dishId}, #{flavor.name}, #{flavor.value})
+            </foreach>
+    </insert>
+
+</mapper>

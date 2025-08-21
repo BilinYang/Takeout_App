@@ -1,0 +1,119 @@
+{
+  "groups": [
+    {
+      "name": "bilin.alioss",
+      "type": "com.bilin.properties.AliOssProperties",
+      "sourceType": "com.bilin.properties.AliOssProperties"
+    },
+    {
+      "name": "bilin.jwt",
+      "type": "com.bilin.properties.JwtProperties",
+      "sourceType": "com.bilin.properties.JwtProperties"
+    },
+    {
+      "name": "bilin.wechat",
+      "type": "com.bilin.properties.WeChatProperties",
+      "sourceType": "com.bilin.properties.WeChatProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "bilin.alioss.access-key-id",
+      "type": "java.lang.String",
+      "sourceType": "com.bilin.properties.AliOssProperties"
+    },
+    {
+      "name": "bilin.alioss.access-key-secret",
+      "type": "java.lang.String",
+      "sourceType": "com.bilin.properties.AliOssProperties"
+    },
+    {
+      "name": "bilin.alioss.bucket-name",
+      "type": "java.lang.String",
+      "sourceType": "com.bilin.properties.AliOssProperties"
+    },
+    {
+      "name": "bilin.alioss.endpoint",
+      "type": "java.lang.String",
+      "sourceType": "com.bilin.properties.AliOssProperties"
+    },
+    {
+      "name": "bilin.jwt.admin-secret-key",
+      "type": "java.lang.String",
+      "description": "管理端员工生成jwt令牌相关配置",
+      "sourceType": "com.bilin.properties.JwtProperties"
+    },
+    {
+      "name": "bilin.jwt.admin-token-name",
+      "type": "java.lang.String",
+      "sourceType": "com.bilin.properties.JwtProperties"
+    },
+    {
+      "name": "bilin.jwt.admin-ttl",
+      "type": "java.lang.Long",
+      "sourceType": "com.bilin.properties.JwtProperties"
+    },
+    {
+      "name": "bilin.jwt.user-secret-key",
+      "type": "java.lang.String",
+      "description": "用户端微信用户生成jwt令牌相关配置",
+      "sourceType": "com.bilin.properties.JwtProperties"
+    },
+    {
+      "name": "bilin.jwt.user-token-name",
+      "type": "java.lang.String",
+      "sourceType": "com.bilin.properties.JwtProperties"
+    },
+    {
+      "name": "bilin.jwt.user-ttl",
+      "type": "java.lang.Long",
+      "sourceType": "com.bilin.properties.JwtProperties"
+    },
+    {
+      "name": "bilin.wechat.api-v3-key",
+      "type": "java.lang.String",
+      "sourceType": "com.bilin.properties.WeChatProperties"
+    },
+    {
+      "name": "bilin.wechat.appid",
+      "type": "java.lang.String",
+      "sourceType": "com.bilin.properties.WeChatProperties"
+    },
+    {
+      "name": "bilin.wechat.mch-serial-no",
+      "type": "java.lang.String",
+      "sourceType": "com.bilin.properties.WeChatProperties"
+    },
+    {
+      "name": "bilin.wechat.mchid",
+      "type": "java.lang.String",
+      "sourceType": "com.bilin.properties.WeChatProperties"
+    },
+    {
+      "name": "bilin.wechat.notify-url",
+      "type": "java.lang.String",
+      "sourceType": "com.bilin.properties.WeChatProperties"
+    },
+    {
+      "name": "bilin.wechat.private-key-file-path",
+      "type": "java.lang.String",
+      "sourceType": "com.bilin.properties.WeChatProperties"
+    },
+    {
+      "name": "bilin.wechat.refund-notify-url",
+      "type": "java.lang.String",
+      "sourceType": "com.bilin.properties.WeChatProperties"
+    },
+    {
+      "name": "bilin.wechat.secret",
+      "type": "java.lang.String",
+      "sourceType": "com.bilin.properties.WeChatProperties"
+    },
+    {
+      "name": "bilin.wechat.we-chat-pay-cert-file-path",
+      "type": "java.lang.String",
+      "sourceType": "com.bilin.properties.WeChatProperties"
+    }
+  ],
+  "hints": []
+}

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bilin.mapper.DishMapper">
+    <select id="list" resultType="com.bilin.vo.DishVO">
+        select d.*, c.name categoryName from dish d, category c
+        where d.category_id = c.id
+            <if test="name!=null">
+                and d.name like concat('%', #{name}, '%')
+            </if>
+            <if test="status!=null">
+                and d.status = #{status}
+            </if>
+            <if test="categoryId!=null">
+                and d.category_id = #{categoryId}
+            </if>
+        order by d.update_time desc
+    </select>
+
+</mapper>

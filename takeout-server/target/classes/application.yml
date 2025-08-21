@@ -1,0 +1,50 @@
+server:
+  port: 8080
+
+spring:
+  profiles:
+    active: dev
+  main:
+    allow-circular-references: true
+  datasource:
+    druid:
+      driver-class-name: ${bilin.datasource.driver-class-name}
+      url: jdbc:mysql://${bilin.datasource.host}:${bilin.datasource.port}/${bilin.datasource.database}?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
+      username: ${bilin.datasource.username}
+      password: ${bilin.datasource.password}
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.bilin.entity
+  configuration:
+    map-underscore-to-camel-case: true
+
+logging:
+  level:
+    com:
+      bilin:
+        mapper: info
+        service: info
+        controller: info
+
+bilin:
+  jwt:
+    # 设置jwt签名加密时使用的秘钥
+    admin-secret-key: itcast
+    # 设置jwt过期时间
+    admin-ttl: 7200000
+    # 设置前端传递过来的令牌名称
+    admin-token-name: token
+    user-secret-key: itheima
+    user-ttl: 7200000
+    user-token-name: authentication
+
+  alioss:
+    endpoint: ${bilin.alioss.endpoint}
+    access-key-id: ${bilin.alioss.access-key-id}
+    access-key-secret: ${bilin.alioss.access-key-secret}
+    bucket-name: ${bilin.alioss.bucket-name}
+
+#  wechat:
+#    appid: ${bilin.wechat.appid}
+#    secret: ${bilin.wechat.secret}
