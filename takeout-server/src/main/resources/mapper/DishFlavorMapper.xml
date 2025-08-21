@@ -20,5 +20,8 @@
         select * from dish_flavor where dish_id=#{dishId}
     </select>
 
+    <delete id="deleteByDishId">
+        delete from dish_flavor where dish_id=#{dishId}
+    </delete>
 
 </mapper>

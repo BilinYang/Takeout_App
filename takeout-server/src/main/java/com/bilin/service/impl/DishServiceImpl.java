@@ -101,4 +101,27 @@ public class DishServiceImpl implements DishService {
         return dishVO;
     }
 
+    @Transactional
+    @Override
+    public void update(DishDTO dto) {
+        Dish dish = new Dish();
+        BeanUtils.copyProperties(dto, dish);
+        // Edit dish information (information in dish table)
+        dishMapper.update(dish);
+        // Edit dish flavor information (information in dish_flavor table)
+        dishFlavorMapper.deleteByDishId(dto.getId());
+
+        List<DishFlavor> flavors = dto.getFlavors();
+        // we need to write 'flavors.size() > 0' because otherwise, even if there are no flavors,
+        // dishFlavorMapp.insetBatch will still execute, causing a SQL grammar error since there is nothing to iterate over:
+        // the SQL will only be 'insert into dish_flavor values', which is grammatically incorrect
+        if (flavors != null && flavors.size() > 0) {
+            // set the dish id of each flavor
+            flavors.forEach(flavor->{
+                flavor.setDishId(dish.getId());
+            });
+            dishFlavorMapper.insertBatch(flavors);
+        }
+
+    }
 }

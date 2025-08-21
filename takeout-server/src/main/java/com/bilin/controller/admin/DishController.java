@@ -63,4 +63,12 @@ public class DishController {
         return Result.success(dishVO);
     }
 
+    @ApiOperation("Edit Dish")
+    @PutMapping
+    public Result update(@RequestBody DishDTO dto){
+        log.info("Edit Dish Information: {}", dto);
+        dishService.update(dto);
+        return Result.success();
+    }
+
 }
