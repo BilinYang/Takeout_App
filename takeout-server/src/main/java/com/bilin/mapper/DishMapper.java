@@ -11,6 +11,8 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Select;
 
+import java.util.List;
+
 public interface DishMapper {
 
     @Select("select count(id) from  dish where category_id = #{categoryId}")
@@ -23,4 +25,12 @@ public interface DishMapper {
     void insert(Dish dish);
 
     Page<DishVO> list(DishPageQueryDTO dto);
+
+    @Select("select * from dish where id=#{id}")
+    Dish selectById(Long id);
+
+    void deleteBatch(List<Long> ids);
+
+    @AutoFill(OperationType.UPDATE)
+    void update(Dish dish);
 }

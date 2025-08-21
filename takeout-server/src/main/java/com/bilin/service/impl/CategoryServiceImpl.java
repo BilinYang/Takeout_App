@@ -4,21 +4,20 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.bilin.constant.MessageConstant;
 import com.bilin.constant.StatusConstant;
-import com.bilin.context.BaseContext;
 import com.bilin.dto.CategoryDTO;
 import com.bilin.dto.CategoryPageQueryDTO;
 import com.bilin.entity.Category;
 import com.bilin.exception.DeletionNotAllowedException;
 import com.bilin.mapper.CategoryMapper;
 import com.bilin.mapper.DishMapper;
-import com.bilin.mapper.SetmealMapper;
+import com.bilin.mapper.SetMealMapper;
 import com.bilin.result.PageResult;
 import com.bilin.service.CategoryService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import java.time.LocalDateTime;
+
 import java.util.List;
 
 @Service
@@ -30,7 +29,7 @@ public class CategoryServiceImpl implements CategoryService {
     @Autowired
     private DishMapper dishMapper;
     @Autowired
-    private SetmealMapper setmealMapper;
+    private SetMealMapper setmealMapper;
 
     public void save(CategoryDTO categoryDTO) {
         Category category = new Category();

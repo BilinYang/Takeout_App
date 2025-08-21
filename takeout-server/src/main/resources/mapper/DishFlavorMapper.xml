@@ -9,4 +9,16 @@
             </foreach>
     </insert>
 
+    <delete id="deleteBatch">
+        delete from dish_flavor where dish_id in
+        <foreach collection="ids" item="id" separator="," open="(" close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <select id="selectByDishId" resultType="com.bilin.entity.DishFlavor">
+        select * from dish_flavor where dish_id=#{dishId}
+    </select>
+
+
 </mapper>
