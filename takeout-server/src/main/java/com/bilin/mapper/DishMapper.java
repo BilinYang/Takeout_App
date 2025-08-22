@@ -33,4 +33,7 @@ public interface DishMapper {
 
     @AutoFill(OperationType.UPDATE)
     void update(Dish dish);
+
+    @Select("select status from dish where id=#{dishId}")
+    Integer getStatusById(Long dishId);
 }

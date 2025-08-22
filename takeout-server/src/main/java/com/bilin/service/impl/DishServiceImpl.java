@@ -36,16 +36,16 @@ public class DishServiceImpl implements DishService {
     @Autowired
     private SetMealDishMapper setMealDishMapper;
 
-    @Transactional // We use @Transactional because we're changing multiple datasets
+    @Transactional // We use @Transactional because we're changing multiple data tables
     public void addDish(DishDTO dto){
         // Get basic parameters of dish and add it to the dish dataset
         Dish dish = new Dish();
         BeanUtils.copyProperties(dto, dish);
         dishMapper.insert(dish);
 
-        log.info("dishId:{}",dish.getId());
+        log.info("dishId: {}",dish.getId());
 
-        // Get dish flavors and add them to the dish_flavors dataset
+        // Get dish flavors and add them to the dish_flavor data table
         List<DishFlavor> dishFlavorList = dto.getFlavors();
         // Add dish id to each of the flavors
         dishFlavorList.forEach(flavor->{

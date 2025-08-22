@@ -2,13 +2,28 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.bilin.mapper.SetMealDishMapper">
-    
+
     <select id="countByDishId" resultType="java.lang.Integer">
         select count(*) from setmeal_dish where dish_id in
             <foreach collection="dishIds" item="dishId" separator="," open="(" close=")">
                 #{dishId}
             </foreach>
     </select>
+
+    <insert id="insertBatch">
+       insert into setmeal_dish (setmeal_id, dish_id, name, price, copies) values
+            <foreach collection="setMealDishList" item="dish" separator=",">
+                (#{dish.setMealId}, #{dish.dishId}, #{dish.name}, #{dish.price}, #{dish.copies})
+            </foreach>
+    </insert>
+
+    <select id="getDishBySetMealId" resultType="com.bilin.entity.SetMealDish">
+        select * from setmeal_dish where setmeal_id=#{id}
+    </select>
+
+    <delete id="deleteByDishId">
+        delete from setmeal_dish where setmeal_id=#{setMealId}
+    </delete>
 
 
 </mapper>
