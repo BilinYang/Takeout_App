@@ -13,8 +13,8 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class UserLoginVO implements Serializable {
 
-    private Long id;
-    private String openid;
+    private Long id; // User ID
+    private String openid; // Unique identification ID that WeChat gives to each user
     private String token;
 
 }

@@ -13,6 +13,12 @@ spring:
       username: ${bilin.datasource.username}
       password: ${bilin.datasource.password}
 
+  redis:
+    host: localhost
+    port: 6379
+
+
+
 mybatis:
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.bilin.entity
@@ -29,11 +35,8 @@ logging:
 
 bilin:
   jwt:
-    # 设置jwt签名加密时使用的秘钥
     admin-secret-key: itcast
-    # 设置jwt过期时间
     admin-ttl: 7200000
-    # 设置前端传递过来的令牌名称
     admin-token-name: token
     user-secret-key: itheima
     user-ttl: 7200000

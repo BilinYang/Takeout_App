@@ -4,12 +4,10 @@ import lombok.Data;
 
 import java.io.Serializable;
 
-/**
- * C端用户登录
- */
+// Login DTO for users of the wechat program app
 @Data
 public class UserLoginDTO implements Serializable {
 
-    private String code;
+    private String code; // wechat authorization code (can only be used once)
 
 }

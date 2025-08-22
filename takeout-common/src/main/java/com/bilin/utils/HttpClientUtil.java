@@ -20,19 +20,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Http工具类
- */
+
 public class HttpClientUtil {
 
     static final  int TIMEOUT_MSEC = 5 * 1000;
 
-    /**
-     * 发送GET方式请求
-     * @param url
-     * @param paramMap
-     * @return
-     */
     public static String doGet(String url,Map<String,String> paramMap){
         // 创建Httpclient对象
         CloseableHttpClient httpClient = HttpClients.createDefault();
@@ -49,13 +41,13 @@ public class HttpClientUtil {
             }
             URI uri = builder.build();
 
-            //创建GET请求
+            // Create HttpGet request
             HttpGet httpGet = new HttpGet(uri);
 
-            //发送请求
+            // Send HttpGet request
             response = httpClient.execute(httpGet);
 
-            //判断响应状态
+            // Determine response status
             if(response.getStatusLine().getStatusCode() == 200){
                 result = EntityUtils.toString(response.getEntity(),"UTF-8");
             }
@@ -73,37 +65,31 @@ public class HttpClientUtil {
         return result;
     }
 
-    /**
-     * 发送POST方式请求
-     * @param url
-     * @param paramMap
-     * @return
-     * @throws IOException
-     */
+
     public static String doPost(String url, Map<String, String> paramMap) throws IOException {
-        // 创建Httpclient对象
+        // Create HttpClient object
         CloseableHttpClient httpClient = HttpClients.createDefault();
         CloseableHttpResponse response = null;
         String resultString = "";
 
         try {
-            // 创建Http Post请求
+            // Create HttpPost request
             HttpPost httpPost = new HttpPost(url);
 
-            // 创建参数列表
+            // Initialize parameter list
             if (paramMap != null) {
                 List<NameValuePair> paramList = new ArrayList();
                 for (Map.Entry<String, String> param : paramMap.entrySet()) {
                     paramList.add(new BasicNameValuePair(param.getKey(), param.getValue()));
                 }
-                // 模拟表单
+                // Simulate parameter array
                 UrlEncodedFormEntity entity = new UrlEncodedFormEntity(paramList);
                 httpPost.setEntity(entity);
             }
 
             httpPost.setConfig(builderRequestConfig());
 
-            // 执行http请求
+            // Execute Http request
             response = httpClient.execute(httpPost);
 
             resultString = EntityUtils.toString(response.getEntity(), "UTF-8");
@@ -120,40 +106,34 @@ public class HttpClientUtil {
         return resultString;
     }
 
-    /**
-     * 发送POST方式请求
-     * @param url
-     * @param paramMap
-     * @return
-     * @throws IOException
-     */
+
     public static String doPost4Json(String url, Map<String, String> paramMap) throws IOException {
-        // 创建Httpclient对象
+        // Create HttpClient object
         CloseableHttpClient httpClient = HttpClients.createDefault();
         CloseableHttpResponse response = null;
         String resultString = "";
 
         try {
-            // 创建Http Post请求
+            // Create HttpPost request
             HttpPost httpPost = new HttpPost(url);
 
             if (paramMap != null) {
-                //构造json格式数据
+                // Create object in json format
                 JSONObject jsonObject = new JSONObject();
                 for (Map.Entry<String, String> param : paramMap.entrySet()) {
                     jsonObject.put(param.getKey(),param.getValue());
                 }
                 StringEntity entity = new StringEntity(jsonObject.toString(),"utf-8");
-                //设置请求编码
+                // Set content encoding
                 entity.setContentEncoding("utf-8");
-                //设置数据类型
+                // Set content type
                 entity.setContentType("application/json");
                 httpPost.setEntity(entity);
             }
 
             httpPost.setConfig(builderRequestConfig());
 
-            // 执行http请求
+            // Execute Http request
             response = httpClient.execute(httpPost);
 
             resultString = EntityUtils.toString(response.getEntity(), "UTF-8");

@@ -86,13 +86,11 @@
             <artifactId>knife4j-spring-boot-starter</artifactId>
         </dependency>
 
-        <!--Redis依赖导入-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
 
-        <!--Spring Cache依赖导入-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-cache</artifactId>
@@ -108,15 +106,16 @@
             <artifactId>jaxb-api</artifactId>
         </dependency>
 
-        <!-- poi -->
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi</artifactId>
         </dependency>
+
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi-ooxml</artifactId>
         </dependency>
+
     </dependencies>
 
     <build>
