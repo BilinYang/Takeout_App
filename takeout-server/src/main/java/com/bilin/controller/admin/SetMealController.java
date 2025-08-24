@@ -12,6 +12,7 @@ import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.annotations.Delete;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,6 +26,7 @@ public class SetMealController {
     @Autowired
     private SetMealService setMealService;
 
+    @CacheEvict(cacheNames="SetMeal", allEntries = true) // evict all caches
     @ApiOperation("Edit Set Meal")
     @PutMapping
     public Result update(@RequestBody SetMealDTO dto) {
@@ -42,6 +44,7 @@ public class SetMealController {
         return Result.success(setMealVO);
     }
 
+    @CacheEvict(cacheNames="SetMeal", key="#dto.categoryId")
     @ApiOperation("Add Set Meal")
     @PostMapping
     public Result addSetMeal(@RequestBody SetMealDTO dto) {
@@ -59,6 +62,7 @@ public class SetMealController {
         return Result.success(pageResult);
     }
 
+    @CacheEvict(cacheNames="SetMeal", allEntries = true)
     @ApiOperation("Batch Delete Set Meals")
     @DeleteMapping
     public Result deleteBatch(@RequestParam List<Long> ids){
@@ -67,6 +71,7 @@ public class SetMealController {
         return Result.success();
     }
 
+    @CacheEvict(cacheNames="SetMeal", allEntries = true) // evict all caches
     @ApiOperation("Enable/Disable Set Meal Sale Status")
     @PostMapping("/status/{status}")
     public Result enableDisable(@PathVariable Integer status, @RequestParam Long id){

@@ -11,10 +11,12 @@ import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.annotations.Delete;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
 
 import java.util.List;
+import java.util.Set;
 
 @Slf4j
 @RestController
@@ -25,11 +27,18 @@ public class DishController {
     @Autowired
     private DishService dishService;
 
+    @Autowired
+    private RedisTemplate redisTemplate;
+
     @ApiOperation("Add Dish")
     @PostMapping
     public Result addDish(@RequestBody DishDTO dto) {
         log.info("Add dish: {}", dto);
         dishService.addDish(dto);
+
+        // Clear redis cache
+        redisTemplate.delete("dish_" + dto.getCategoryId());
+
         return Result.success();
     }
 
@@ -45,6 +54,11 @@ public class DishController {
     public Result delete(@RequestParam List<Long> ids){
         log.info("Delete Dishes with ids: {}", ids);
         dishService.delete(ids);
+
+        // Clear redis cache
+        Set keys = redisTemplate.keys("dish_*");
+        redisTemplate.delete(keys);
+
         return Result.success();
     }
 
@@ -52,6 +66,11 @@ public class DishController {
     @ApiOperation("Enable/Disable Category")
     public Result<String> startOrStop(@PathVariable("status") Integer status, Long id){
         dishService.startOrStop(status,id);
+
+        // Clear redis cache
+        Set keys = redisTemplate.keys("dish_*");
+        redisTemplate.delete(keys);
+
         return Result.success();
     }
 
@@ -68,6 +87,11 @@ public class DishController {
     public Result update(@RequestBody DishDTO dto){
         log.info("Edit Dish Information: {}", dto);
         dishService.update(dto);
+
+        // Clear redis cache
+        Set keys = redisTemplate.keys("dish_*");
+        redisTemplate.delete(keys);
+
         return Result.success();
     }
 }

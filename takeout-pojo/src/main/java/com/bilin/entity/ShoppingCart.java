@@ -30,4 +30,5 @@ public class ShoppingCart implements Serializable {
     private BigDecimal amount;
     private String image;
     private LocalDateTime createTime;
+
 }

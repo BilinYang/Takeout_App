@@ -22,9 +22,9 @@ public class SetMealController {
     @Autowired
     private SetMealService setMealService;
 
+    @Cacheable(cacheNames="SetMeal", key="#categoryId")
     @GetMapping("/list")
     @ApiOperation("Query by Category ID")
-    @Cacheable(cacheNames = "setMealCache",key = "#categoryId") //key: setmealCache::100
     public Result<List<SetMeal>> list(Long categoryId) {
         SetMeal setmeal = new SetMeal();
         setmeal.setCategoryId(categoryId);

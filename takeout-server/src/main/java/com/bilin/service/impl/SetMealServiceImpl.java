@@ -57,7 +57,7 @@ public class SetMealServiceImpl implements SetMealService {
             if (status == StatusConstant.DISABLE){
                 throw new SetmealEnableFailedException(MessageConstant.SETMEAL_ENABLE_FAILED);
             };
-            setMealDish.setSetMealId(setMealId);
+            setMealDish.setSetmealId(setMealId);
         });
         setMealDishMapper.insertBatch(setMealDishes);
     }
@@ -74,7 +74,7 @@ public class SetMealServiceImpl implements SetMealService {
         setMealVO.setCategoryName(categoryName);
 
         List<SetMealDish> setMealDishList = setMealDishMapper.getDishBySetMealId(id);
-        setMealVO.setSetMealDishes(setMealDishList);
+        setMealVO.setSetmealDishes(setMealDishList);
 
         return setMealVO;
     }
@@ -96,7 +96,7 @@ public class SetMealServiceImpl implements SetMealService {
             if (status == StatusConstant.DISABLE){
                 throw new SetmealEnableFailedException(MessageConstant.SETMEAL_ENABLE_FAILED);
             }
-            setMealDish.setSetMealId(setMealId);
+            setMealDish.setSetmealId(setMealId);
         });
         setMealDishMapper.insertBatch(setMealDishList);
     }

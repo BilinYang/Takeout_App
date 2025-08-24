@@ -48,10 +48,12 @@ public class DishServiceImpl implements DishService {
 
         // Get dish flavors and add them to the dish_flavor data table
         List<DishFlavor> dishFlavorList = dto.getFlavors();
-        // Add dish id to each of the flavors
-        dishFlavorList.forEach(flavor->{
-            flavor.setDishId(dish.getId());
-        });
+        if (dishFlavorList!=null && dishFlavorList.size()>0){
+            // Add dish id to each of the flavors
+            dishFlavorList.forEach(flavor->{
+                flavor.setDishId(dish.getId());
+            });
+        }
         dishFlavorMapper.insertBatch(dishFlavorList);
     }
 
