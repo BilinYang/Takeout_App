@@ -12,9 +12,8 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Builder
 public class GoodsSalesDTO implements Serializable {
-    //商品名称
+    // Product name
     private String name;
-
-    //销量
+    // Sale amount
     private Integer number;
 }

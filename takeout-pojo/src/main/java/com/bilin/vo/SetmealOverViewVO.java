@@ -12,9 +12,9 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 public class SetMealOverViewVO implements Serializable {
-    // 已启售数量
+    // Number of items currently on sale
     private Integer sold;
 
-    // 已停售数量
+    // Number of items discontinued (no longer for sale)
     private Integer discontinued;
 }

@@ -8,13 +8,9 @@ import java.io.Serializable;
 public class DishPageQueryDTO implements Serializable {
 
     private int page;
-
     private int pageSize;
-
     private String name;
-
     private Integer categoryId;
-
     // Status: 0 = Disabled, 1 = Available
     private Integer status;
 

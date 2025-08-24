@@ -19,7 +19,7 @@ import java.util.List;
 @Slf4j
 @RestController
 @RequestMapping("/admin/setmeal")
-@Api(tags="Set Meal API")
+@Api(tags="Set Meal API (Admin)")
 public class SetMealController {
 
     @Autowired

@@ -18,9 +18,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class Orders implements Serializable {
 
-    /**
-     * 订单状态 1待付款 2待接单 3已接单 4派送中 5已完成 6已取消
-     */
+    // Order status 1.Unpaid 2.Unreceived order 3.Received order 4.Delivering 5.Completed 6.Cancelled 7.Refunded
     public static final Integer PENDING_PAYMENT = 1;
     public static final Integer TO_BE_CONFIRMED = 2;
     public static final Integer CONFIRMED = 3;
@@ -28,9 +26,7 @@ public class Orders implements Serializable {
     public static final Integer COMPLETED = 5;
     public static final Integer CANCELLED = 6;
 
-    /**
-     * 支付状态 0未支付 1已支付 2退款
-     */
+    // Payment status 0.Unpaid 1.Paid 2.Refunded
     public static final Integer UN_PAID = 0;
     public static final Integer PAID = 1;
     public static final Integer REFUND = 2;
@@ -39,72 +35,46 @@ public class Orders implements Serializable {
 
     private Long id;
 
-    //订单号
+    // Order number
     private String number;
 
-    //订单状态 1待付款 2待接单 3已接单 4派送中 5已完成 6已取消 7退款
+    // Order status 1.Unpaid 2.Unreceived order 3.Received order 4.Delivering 5.Completed 6.Cancelled 7.Refunded
     private Integer status;
-
-    //下单用户id
     private Long userId;
-
-    //地址id
     private Long addressBookId;
-
-    //下单时间
     private LocalDateTime orderTime;
-
-    //结账时间
     private LocalDateTime checkoutTime;
 
-    //支付方式 1微信，2支付宝
+    // Payment method 1.WechatPay 2.AliPay
     private Integer payMethod;
 
-    //支付状态 0未支付 1已支付 2退款
+    // Payment status 0.Unpaid 1.Paid 2.Refunded
     private Integer payStatus;
 
-    //实收金额
+    // Amount received
     private BigDecimal amount;
 
-    //备注
+    // Note the orderer made
     private String remark;
-
-    //用户名
     private String userName;
-
-    //手机号
     private String phone;
-
-    //地址
     private String address;
-
-    //收货人
     private String consignee;
-
-    //订单取消原因
+    // Reason for the orderer cancelling their order
     private String cancelReason;
-
-    //订单拒绝原因
+    // Reason for the restaurant to reject the order
     private String rejectionReason;
-
-    //订单取消时间
+    // Order cancel time
     private LocalDateTime cancelTime;
-
-    //预计送达时间
     private LocalDateTime estimatedDeliveryTime;
-
-    //配送状态  1立即送出  0选择具体时间
+    // Delivery status 1.Deliver immediately 0.Select divery time
     private Integer deliveryStatus;
-
-    //送达时间
+    // Delivered time
     private LocalDateTime deliveryTime;
-
-    //打包费
+    // Packaging cost
     private int packAmount;
-
-    //餐具数量
+    // Number of sets of tableware
     private int tablewareNumber;
-
-    //餐具数量状态  1按餐量提供  0选择具体数量
+    // Tableware number status 1.Deliver according to number of dishes 0.Choose number of sets of tableware
     private Integer tablewareStatus;
 }

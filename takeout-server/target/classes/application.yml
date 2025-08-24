@@ -38,7 +38,7 @@ bilin:
     admin-secret-key: itcast
     admin-ttl: 7200000
     admin-token-name: token
-    user-secret-key: itheima
+    user-secret-key: user
     user-ttl: 7200000
     user-token-name: authentication
 
@@ -48,6 +48,6 @@ bilin:
     access-key-secret: ${bilin.alioss.access-key-secret}
     bucket-name: ${bilin.alioss.bucket-name}
 
-#  wechat:
-#    appid: ${bilin.wechat.appid}
-#    secret: ${bilin.wechat.secret}
+  wechat:
+    appid: ${bilin.wechat.appid}
+    secret: ${bilin.wechat.secret}

@@ -24,7 +24,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/admin/employee")
 @Slf4j
-@Api(tags= "Employee API")
+@Api(tags= "Employee API (Admin)")
 public class EmployeeController {
 
     @Autowired

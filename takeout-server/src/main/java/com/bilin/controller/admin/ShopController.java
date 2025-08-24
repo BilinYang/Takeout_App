@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController("adminShopController")
 @RequestMapping("/admin/shop")
-@Api(tags = "Shop API")
+@Api(tags = "Shop API (Admin)")
 @Slf4j
 public class ShopController {
     public static final String KEY = "SHOP_STATUS";

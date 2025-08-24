@@ -13,13 +13,13 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class UserReportVO implements Serializable {
 
-    //日期，以逗号分隔，例如：2022-10-01,2022-10-02,2022-10-03
+    // Dates, separated by commas, e.g., 2022-10-01,2022-10-02,2022-10-03
     private String dateList;
 
-    //用户总量，以逗号分隔，例如：200,210,220
+    // Total users, separated by commas, e.g., 200,210,220
     private String totalUserList;
 
-    //新增用户，以逗号分隔，例如：20,21,10
+    // New users, separated by commas, e.g., 20,21,10
     private String newUserList;
 
 }

@@ -8,7 +8,7 @@ import java.io.Serializable;
 public class OrdersCancelDTO implements Serializable {
 
     private Long id;
-    //订单取消原因
+    // Reason for Order Cancellation
     private String cancelReason;
 
 }

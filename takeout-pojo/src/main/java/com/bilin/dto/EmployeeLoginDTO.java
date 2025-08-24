@@ -7,13 +7,13 @@ import lombok.Data;
 import java.io.Serializable;
 
 @Data
-@ApiModel(description = "员工登录时传递的数据模型")
+@ApiModel(description = "Data Model for Employee Login")
 public class EmployeeLoginDTO implements Serializable {
 
-    @ApiModelProperty("用户名")
+    @ApiModelProperty("Username")
     private String username;
 
-    @ApiModelProperty("密码")
+    @ApiModelProperty("Password")
     private String password;
 
 }

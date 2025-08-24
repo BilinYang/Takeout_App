@@ -9,7 +9,7 @@ public class OrdersRejectionDTO implements Serializable {
 
     private Long id;
 
-    //订单拒绝原因
+    // Reason for rejecting order
     private String rejectionReason;
 
 }

@@ -17,7 +17,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/admin/common")
 @Slf4j
-@Api(tags = "Common API")
+@Api(tags = "Common API (Admin)")
 public class CommonController {
 
     @Autowired

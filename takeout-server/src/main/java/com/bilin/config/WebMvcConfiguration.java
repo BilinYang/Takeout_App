@@ -1,6 +1,7 @@
 package com.bilin.config;
 
 import com.bilin.interceptor.JwtTokenAdminInterceptor;
+import com.bilin.interceptor.JwtTokenUserInterceptor;
 import com.bilin.json.JacksonObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,12 +28,20 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
 
     @Autowired
     private JwtTokenAdminInterceptor jwtTokenAdminInterceptor;
+    @Autowired
+    private JwtTokenUserInterceptor jwtTokenUserInterceptor;
 
     protected void addInterceptors(InterceptorRegistry registry) {
         log.info("Starting to register custom interceptor...");
+        // Register admin interceptor
         registry.addInterceptor(jwtTokenAdminInterceptor)
                 .addPathPatterns("/admin/**")
                 .excludePathPatterns("/admin/employee/login");
+        // register user interceptor
+        registry.addInterceptor(jwtTokenUserInterceptor)
+                .addPathPatterns("/user/**")
+                .excludePathPatterns("/user/user/login")
+                .excludePathPatterns("/user/shop/status");
     }
 
     @Bean

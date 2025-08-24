@@ -16,6 +16,7 @@ import com.bilin.mapper.SetMealDishMapper;
 import com.bilin.mapper.SetMealMapper;
 import com.bilin.result.PageResult;
 import com.bilin.service.SetMealService;
+import com.bilin.vo.DishItemVO;
 import com.bilin.vo.SetMealVO;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
@@ -103,7 +104,7 @@ public class SetMealServiceImpl implements SetMealService {
     @Override
     public PageResult page(SetMealPageQueryDTO dto){
         PageHelper.startPage(dto.getPage(), dto.getPageSize());
-        Page<SetMeal> page = setMealMapper.list(dto);
+        Page<SetMeal> page = setMealMapper.pageQuery(dto);
         return new PageResult(page.getTotal(), page.getResult());
     }
 
@@ -123,6 +124,17 @@ public class SetMealServiceImpl implements SetMealService {
     @Override
     public void enableDisable(Integer status, Long id) {
         setMealMapper.enableDisable(status, id);
+    }
+
+    @Override
+    public List<SetMeal> list(SetMeal setMeal) {
+        List<SetMeal> list = setMealMapper.list(setMeal);
+        return list;
+    }
+
+    @Override
+    public List<DishItemVO> getDishItemById(Long id) {
+        return setMealMapper.getDishItemBySetmealId(id);
     }
 
 }

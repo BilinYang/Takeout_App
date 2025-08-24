@@ -18,7 +18,7 @@ import java.util.List;
 
 @Slf4j
 @RestController
-@Api(tags = "Dish API")
+@Api(tags = "Dish API (Admin)")
 @RequestMapping("/admin/dish")
 public class DishController {
 
@@ -70,5 +70,4 @@ public class DishController {
         dishService.update(dto);
         return Result.success();
     }
-
 }

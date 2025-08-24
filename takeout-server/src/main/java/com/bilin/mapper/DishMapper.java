@@ -12,6 +12,7 @@ import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
+import java.util.Map;
 
 public interface DishMapper {
 
@@ -24,7 +25,7 @@ public interface DishMapper {
             "#{status}, #{createTime}, #{updateTime}, #{createUser}, #{updateUser})")
     void insert(Dish dish);
 
-    Page<DishVO> list(DishPageQueryDTO dto);
+//    Page<DishVO> pageQuery(DishPageQueryDTO dto);
 
     @Select("select * from dish where id=#{id}")
     Dish selectById(Long id);
@@ -36,4 +37,13 @@ public interface DishMapper {
 
     @Select("select status from dish where id=#{dishId}")
     Integer getStatusById(Long dishId);
+
+    Page<DishVO> list(DishPageQueryDTO dto);
+
+    @Select("select a.* from dish a left join setmeal_dish b on a.id = b.dish_id where b.setmeal_id = #{setmealId}")
+    List<Dish> getBySetmealId(Long id);
+
+    Integer countByMap(Map map);
+
+    List<Dish> listBy(Dish dish);
 }

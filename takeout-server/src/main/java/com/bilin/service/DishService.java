@@ -2,6 +2,7 @@ package com.bilin.service;
 
 import com.bilin.dto.DishDTO;
 import com.bilin.dto.DishPageQueryDTO;
+import com.bilin.entity.Dish;
 import com.bilin.result.PageResult;
 import com.bilin.vo.DishVO;
 import lombok.extern.slf4j.Slf4j;
@@ -23,4 +24,8 @@ public interface DishService {
     DishVO getById(Long id);
 
     void update(DishDTO dto);
+
+    List<Dish> list(Long categoryId);
+
+    List<DishVO> listWithFlavor(Dish dish);
 }

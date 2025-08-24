@@ -13,10 +13,10 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class SalesTop10ReportVO implements Serializable {
 
-    //商品名称列表，以逗号分隔，例如：鱼香肉丝,宫保鸡丁,水煮鱼
+    // Product name list, separated by commas, e.g., Fish-Flavored Shredded Pork, Kung Pao Chicken, Boiled Fish
     private String nameList;
 
-    //销量列表，以逗号分隔，例如：260,215,200
+    // Sales count list, separated by commas, e.g., 260,215,200
     private String numberList;
 
 }
