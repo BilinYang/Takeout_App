@@ -14,9 +14,8 @@ spring:
       password: ${bilin.datasource.password}
 
   redis:
-    host: localhost
-    port: 6379
-
+    host: ${bilin.redis.host}
+    port: ${bilin.redis.port}
 
 
 mybatis:
@@ -51,3 +50,13 @@ bilin:
   wechat:
     appid: ${bilin.wechat.appid}
     secret: ${bilin.wechat.secret}
+
+    mchid: ${bilin.wechat.mchid}
+    mchSerialNo: ${bilin.wechat.mchSerialNo}
+    privateKeyFilePath: ${bilin.wechat.privateKeyFilePath}
+    apiV3Key: ${bilin.wechat.apiV3Key}
+    weChatPayCertFilePath: ${bilin.wechat.weChatPayCertFilePath}
+    notifyUrl: ${bilin.wechat.notifyUrl}
+    refundNotifyUrl: ${bilin.wechat.refundNotifyUrl}
+
+

@@ -27,7 +27,7 @@ public class Orders implements Serializable {
     public static final Integer CANCELLED = 6;
 
     // Payment status 0.Unpaid 1.Paid 2.Refunded
-    public static final Integer UN_PAID = 0;
+    public static final Integer UNPAID = 0;
     public static final Integer PAID = 1;
     public static final Integer REFUND = 2;
 
