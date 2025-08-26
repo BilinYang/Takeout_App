@@ -33,7 +33,7 @@ public class JwtTokenUserInterceptor implements HandlerInterceptor {
 
         // parse and verify token
         try {
-            log.info("jwt verification:{}", token);
+            log.info("jwt verification: {}", token);
             Claims claims = JwtUtil.parseJWT(jwtProperties.getUserSecretKey(), token);
             Long userId = Long.valueOf(claims.get(JwtClaimsConstant.USER_ID).toString());
 

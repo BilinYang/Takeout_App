@@ -9,8 +9,8 @@ import java.time.LocalDateTime;
 @Data
 public class OrdersPageQueryDTO implements Serializable {
 
-    private int page;
-    private int pageSize;
+    private int page = 1;
+    private int pageSize = 5;
     private String number;
     private  String phone;
     private Integer status;

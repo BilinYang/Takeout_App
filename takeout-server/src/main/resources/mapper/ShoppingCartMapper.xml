@@ -22,4 +22,13 @@
         order by create_time desc
     </select>
 
+    <insert id="insertBatch">
+        insert into shopping_cart (id, name, image, user_id, dish_id, setmeal_id,
+                                   dish_flavor, number, amount, create_time) values
+        <foreach collection="shoppingCartList" item="item" separator=",">
+            (null, #{name}, #{image}, #{userId}, #{dishId}, #{setmealId},
+            #{dishFlavor}, #{number}, #{amount}, #{createTime})
+        </foreach>
+    </insert>
+
 </mapper>

@@ -12,7 +12,7 @@ import java.util.Set;
 
 @RestController("userShopController")
 @RequestMapping("/user/shop")
-@Api(tags = "Shop API")
+@Api(tags = "Shop API (User)")
 @Slf4j
 public class ShopController {
 

@@ -35,10 +35,10 @@ import java.util.List;
 @Component
 public class WeChatPayUtil {
 
-    //微信支付下单接口地址
+    // WeChat Pay create order API address
     public static final String JSAPI = "https://api.mch.weixin.qq.com/v3/pay/transactions/jsapi";
 
-    //申请退款接口地址
+    // Refund request API address
     public static final String REFUNDS = "https://api.mch.weixin.qq.com/v3/refund/domestic/refunds";
 
     @Autowired
