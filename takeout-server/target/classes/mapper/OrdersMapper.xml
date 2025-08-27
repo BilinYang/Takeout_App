@@ -70,5 +70,33 @@
         order by order_time desc
     </select>
 
+    <select id="countByMap" resultType="java.lang.Integer">
+        select count(*) from orders
+        <where>
+            <if test="beginTime != null">
+                order_time &gt;= #{beginTime}
+            </if>
+            <if test="endTime != null">
+                and order_time &lt;= #{endTime}
+            </if>
+            <if test="status != null">
+                and status = #{status}
+            </if>
+        </where>
+    </select>
+
+    <select id="sumTop10" resultType="com.bilin.dto.GoodsSalesDTO">
+        select od.name, sum(od.number) number
+        from orders o,
+             order_detail od
+        where o.id = od.order_id
+          and o.status=5
+          and o.order_time &gt;= #{beginTime}
+          and o.order_time &lt;= #{endTime}
+        group by od.name
+        order by number desc
+        limit 0, 10;
+    </select>
+
 
 </mapper>
