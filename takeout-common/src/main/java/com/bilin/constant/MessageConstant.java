@@ -21,6 +21,7 @@ public class MessageConstant {
     public static final String DISH_BE_RELATED_BY_SETMEAL = "The current dish is associated with a set meal and cannot be deleted";
     public static final String ORDER_STATUS_ERROR = "Order status error";
     public static final String ORDER_NOT_FOUND = "Order does not exist";
+    public static final String ORDER_NOT_PAID_FOR = "Order was automatically cancelled due to non-payment.";
 
 
 }

@@ -1,7 +1,6 @@
 package com.bilin.service.impl;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 import com.bilin.constant.MessageConstant;
 import com.bilin.context.BaseContext;
 import com.bilin.dto.*;
@@ -14,8 +13,8 @@ import com.bilin.vo.OrderPaymentVO;
 import com.bilin.vo.OrderStatisticsVO;
 import com.bilin.vo.OrderSubmitVO;
 import com.bilin.vo.OrderVO;
-import com.bilin.websocket.WebSocketServer;
 import com.bilin.utils.WeChatPayUtil;
+import com.bilin.websocket.WebSocketServer;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import lombok.extern.slf4j.Slf4j;
@@ -165,9 +164,9 @@ public class OrdersServiceImpl implements OrdersService {
 
         // Use webSocket to send notification to customer server (type, orderId, content)
         Map map = new HashMap();
-        map.put("type",1); // 1.New Order notification，2.Customer wants restaurant to expedite their delivery
-        map.put("orderId",ordersDB.getId());
-        map.put("content","Order Number：" + outTradeNo);
+        map.put("type", 1);
+        map.put("orderId", ordersDB.getId());
+        map.put("content", "Order Number：" + outTradeNo);
 
         String json = JSON.toJSONString(map);
         webSocketServer.sendToAllClient(json);
