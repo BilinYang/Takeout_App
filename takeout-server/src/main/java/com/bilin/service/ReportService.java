@@ -6,6 +6,7 @@ import com.bilin.vo.TurnoverReportVO;
 import com.bilin.vo.UserReportVO;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletResponse;
 import java.time.LocalDate;
 
 @Service
@@ -18,4 +19,6 @@ public interface ReportService {
     OrderReportVO orderStatistics(LocalDate begin, LocalDate end);
 
     SalesTop10ReportVO top10Statistics(LocalDate begin, LocalDate end);
+
+    void export(HttpServletResponse response);
 }

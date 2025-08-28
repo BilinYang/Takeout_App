@@ -5,15 +5,19 @@ import com.bilin.entity.Orders;
 import com.bilin.mapper.OrdersMapper;
 import com.bilin.mapper.UserMapper;
 import com.bilin.service.ReportService;
-import com.bilin.vo.OrderReportVO;
-import com.bilin.vo.SalesTop10ReportVO;
-import com.bilin.vo.TurnoverReportVO;
-import com.bilin.vo.UserReportVO;
+import com.bilin.service.WorkspaceService;
+import com.bilin.vo.*;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.InputStream;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -31,6 +35,8 @@ public class ReportServiceImpl implements ReportService {
     private OrdersMapper ordersMapper;
     @Autowired
     private UserMapper userMapper;
+    @Autowired
+    private WorkspaceService workspaceService;
 
     @Override
     public TurnoverReportVO turnoverStatistics(LocalDate begin, LocalDate end){
@@ -170,6 +176,59 @@ public class ReportServiceImpl implements ReportService {
                 .nameList(StringUtils.join(nameList, ","))
                 .numberList(StringUtils.join(numberList, ","))
                 .build();
+    }
+
+
+    @Override
+    public void export(HttpServletResponse response) {
+        // Search data of the last 30 days
+        LocalDate now = LocalDate.now();
+        LocalDate end = now.minusDays(1);
+        LocalDate begin = now.minusDays(30);
+        LocalDateTime beginTime = LocalDateTime.of(begin, LocalTime.MIN);
+        LocalDateTime endTime = LocalDateTime.of(end, LocalTime.MAX);
+        BusinessDataVO businessData = workspaceService.getBusinessData(beginTime, endTime);
+
+        // Write data into Excel spreadsheet
+        InputStream inputStream = this.getClass().getClassLoader()
+                .getResourceAsStream("OrderDataSpreadsheetTemplate.xlsx");
+
+        try {
+            // Fill in Overview Data
+            XSSFWorkbook workbook = new XSSFWorkbook(inputStream);
+            XSSFSheet sheet = workbook.getSheet("Sheet1");
+            sheet.getRow(1).getCell(1).setCellValue("Time: " + begin + " to " + end);
+            sheet.getRow(3).getCell(2).setCellValue(businessData.getTurnover());
+            sheet.getRow(3).getCell(4).setCellValue(businessData.getOrderCompletionRate());
+            sheet.getRow(3).getCell(6).setCellValue(businessData.getNewUsers());
+            sheet.getRow(4).getCell(2).setCellValue(businessData.getValidOrderCount());
+            sheet.getRow(4).getCell(4).setCellValue(businessData.getUnitPrice());
+
+            // Fill in Detailed Data (for each of the last 30 days)
+            for (int i=0; i<30; i++){
+                LocalDate date = begin.plusDays(i);
+                beginTime = LocalDateTime.of(date, LocalTime.MIN);
+                endTime = LocalDateTime.of(date, LocalTime.MAX);
+                businessData = workspaceService.getBusinessData(beginTime, endTime);
+
+                sheet.getRow(7+i).getCell(1).setCellValue(date.toString());
+                sheet.getRow(7+i).getCell(2).setCellValue(businessData.getTurnover());
+                sheet.getRow(7+i).getCell(3).setCellValue(businessData.getValidOrderCount());
+                sheet.getRow(7+i).getCell(4).setCellValue(businessData.getOrderCompletionRate());
+                sheet.getRow(7+i).getCell(5).setCellValue(businessData.getUnitPrice());
+                sheet.getRow(7+i).getCell(6).setCellValue(businessData.getNewUsers());
+            }
+
+            ServletOutputStream os = response.getOutputStream();
+            workbook.write(os);
+
+            os.close();
+            workbook.close();
+            inputStream.close();
+
+        } catch (IOException e) {
+            log.error("Failed to write into Excel: {}", e.getMessage());
+        }
     }
 
 }
