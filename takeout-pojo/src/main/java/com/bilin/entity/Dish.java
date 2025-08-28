@@ -8,9 +8,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-/**
- * 菜品
- */
+
 @Data
 @Builder
 @NoArgsConstructor

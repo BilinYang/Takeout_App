@@ -26,7 +26,7 @@ public class HttpClientUtil {
     static final  int TIMEOUT_MSEC = 5 * 1000;
 
     public static String doGet(String url,Map<String,String> paramMap){
-        // 创建Httpclient对象
+        // Create HttpClient instance
         CloseableHttpClient httpClient = HttpClients.createDefault();
 
         String result = "";

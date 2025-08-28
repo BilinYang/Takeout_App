@@ -9,9 +9,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-/**
- * 订单
- */
+
 @Data
 @Builder
 @NoArgsConstructor

@@ -8,9 +8,7 @@ import lombok.NoArgsConstructor;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
-/**
- * 订单明细
- */
+
 @Data
 @Builder
 @NoArgsConstructor

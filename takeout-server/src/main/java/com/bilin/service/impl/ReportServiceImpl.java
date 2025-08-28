@@ -25,7 +25,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.function.BinaryOperator;
 
 @Slf4j
 @Service
@@ -191,7 +190,7 @@ public class ReportServiceImpl implements ReportService {
 
         // Write data into Excel spreadsheet
         InputStream inputStream = this.getClass().getClassLoader()
-                .getResourceAsStream("OrderDataSpreadsheetTemplate.xlsx");
+                .getResourceAsStream("template/OrderDataSpreadsheetTemplate.xlsx");
 
         try {
             // Fill in Overview Data

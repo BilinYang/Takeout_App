@@ -40,7 +40,6 @@
     {
       "name": "bilin.jwt.admin-secret-key",
       "type": "java.lang.String",
-      "description": "管理端员工生成jwt令牌相关配置",
       "sourceType": "com.bilin.properties.JwtProperties"
     },
     {
@@ -56,7 +55,6 @@
     {
       "name": "bilin.jwt.user-secret-key",
       "type": "java.lang.String",
-      "description": "用户端微信用户生成jwt令牌相关配置",
       "sourceType": "com.bilin.properties.JwtProperties"
     },
     {
